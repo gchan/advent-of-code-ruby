@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 
 file_path = File.expand_path("../day-5-input.txt", __FILE__)
-input     = File.read(file_path)
-
-strings = input.split("\n")
+strings   = File.readlines(file_path)
 
 strings.select! do |string|
   string.chars.each_cons(3).any? { |a, _b, c| a == c }

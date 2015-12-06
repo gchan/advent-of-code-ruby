@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
 file_path = File.expand_path("../day-2-input.txt", __FILE__)
-input     = File.read(file_path)
+presents  = File.readlines(file_path)
 
 total = 0
 
-input.split("\n").each do |present|
+presents.each do |present|
   sides = present.split("x").map(&:to_i)
 
   # Wrap
