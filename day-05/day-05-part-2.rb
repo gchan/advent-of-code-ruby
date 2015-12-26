@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-file_path = File.expand_path("../day-5-input.txt", __FILE__)
+file_path = File.expand_path("../day-05-input.txt", __FILE__)
 strings   = File.readlines(file_path)
 
 strings.select! do |string|

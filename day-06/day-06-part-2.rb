@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-file_path    = File.expand_path("../day-6-input.txt", __FILE__)
+file_path    = File.expand_path("../day-06-input.txt", __FILE__)
 instructions = File.readlines(file_path)
 
 class Coordinate

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-file_path = File.expand_path("../day-2-input.txt", __FILE__)
+file_path = File.expand_path("../day-02-input.txt", __FILE__)
 presents  = File.readlines(file_path)
 
 total = 0

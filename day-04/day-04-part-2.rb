@@ -2,7 +2,7 @@
 
 require 'digest'
 
-file_path = File.expand_path("../day-4-input.txt", __FILE__)
+file_path = File.expand_path("../day-04-input.txt", __FILE__)
 input     = File.read(file_path)
 
 number = 0

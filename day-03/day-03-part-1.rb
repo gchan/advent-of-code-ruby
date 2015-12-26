@@ -2,7 +2,7 @@
 
 require 'set'
 
-file_path = File.expand_path("../day-3-input.txt", __FILE__)
+file_path = File.expand_path("../day-03-input.txt", __FILE__)
 input     = File.read(file_path)
 
 x = 0

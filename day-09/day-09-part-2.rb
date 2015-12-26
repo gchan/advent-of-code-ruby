@@ -3,7 +3,7 @@
 # It's only 8 nodes (locations), so we can brute force with no problem :)
 # !8 = 40320 possible paths
 
-file_path = File.expand_path("../day-9-input.txt", __FILE__)
+file_path = File.expand_path("../day-09-input.txt", __FILE__)
 distances = File.readlines(file_path)
 
 locations = Hash.new { |hash, key| hash[key] = {} }

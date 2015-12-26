@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-file_path = File.expand_path("../day-8-input.txt", __FILE__)
+file_path = File.expand_path("../day-08-input.txt", __FILE__)
 lines     = File.readlines(file_path).map(&:strip)
 
 code_characters   = lines.map(&:length).inject(:+)

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-file_path    = File.expand_path("../day-7-input.txt", __FILE__)
+file_path    = File.expand_path("../day-07-input.txt", __FILE__)
 instructions = File.readlines(file_path)
 
 class Circuit
