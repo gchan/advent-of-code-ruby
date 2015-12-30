@@ -13,8 +13,14 @@ def two_pairs?(password)
   password.scan(/(.)\1/).count >= 2
 end
 
+def excludes_confusing_characters(password)
+  password.scan(/[iol]/).empty?
+end
+
 def valid_password?(password)
-  increasing_straight?(password) && two_pairs?(password)
+  increasing_straight?(password) &&
+    two_pairs?(password) &&
+    excludes_confusing_characters(password)
 end
 
 next_password = 2
