@@ -6,8 +6,8 @@ input     = File.read(file_path)
 lines = input.split("\n")
 
 def abba?(text)
-  (text.length - 1).times do |i|
-    str = text[i..(i+3)]
+  text.chars.each_cons(4) do |chars|
+    str = chars.join
     next if str[0] == str[1]
     if str[0..1] == str[2..3].chars.reverse.join
       return true
@@ -18,10 +18,11 @@ def abba?(text)
 end
 
 tls = lines.select do |line|
-  sequences = line.scan(/(\w+)\[/).flatten +
-     line.scan(/\](\w+)/).flatten
+  strings = line.split(/\[|\]/)
 
-  hypernets = line.scan(/\[(\w+)\]/).flatten
+  sequences, hypernets = strings.partition.with_index do |str, idx|
+    idx.even?
+  end
 
   sequences.any?{ |seq| abba?(seq) } &&
     !hypernets.any?{ |seq| abba?(seq) }

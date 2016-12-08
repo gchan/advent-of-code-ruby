@@ -8,8 +8,8 @@ lines = input.split("\n")
 def aba(text)
   result = []
 
-  text.length.times.flat_map do |i|
-    str = text[i..(i+2)]
+  text.chars.each_cons(3) do |chars|
+    str = chars.join
 
     result << str if str[0] == str[2]
   end
@@ -24,10 +24,11 @@ def bab(text)
 end
 
 ssl = lines.select { |line|
-  sequences = line.scan(/(\w+)\[/).flatten +
-     line.scan(/\](\w+)/).flatten
+  strings = line.split(/\[|\]/)
 
-  hypernets = line.scan(/\[(\w+)\]/).flatten
+  sequences, hypernets = strings.partition.with_index do |str, idx|
+    idx.even?
+  end
 
   abas = sequences.flat_map { |str| aba(str) }
   babs = hypernets.flat_map { |str| bab(str) }
