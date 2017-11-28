@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for y in `seq -w 2015 2016`; do
+for y in `seq -w 2015 2017`; do
   mkdir $y
 
   for i in `seq -w 1 25`; do
