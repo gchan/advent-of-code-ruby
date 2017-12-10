@@ -14,13 +14,9 @@ skip = 0
 
 64.times do
   lengths.each do |length|
-    sublist = list[idx, length]
-    sublist.concat(list[0, idx + length - size]) if idx + length - 1 >= size
-
-    sublist.reverse!
-
-    list[idx, length] = sublist.slice!(0, size - idx)
-    list[0, idx + length - size] = sublist if sublist.any?
+    list.rotate!(idx)
+    list[0, length] = list[0, length].reverse
+    list.rotate!(-idx)
 
     idx = (idx + length + skip) % size
     skip += 1
