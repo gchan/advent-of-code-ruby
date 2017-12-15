@@ -1,0 +1,2 @@
+Generator A starts with 873
+Generator B starts with 583
