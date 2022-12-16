@@ -15,39 +15,33 @@ input.each_line do |line|
   valves[valve] = leads
 end
 
-start = "AA"
-
 # Simplify the graph by removing rooms with zero-flow valves.
 #
 # Do this by finding the distances between each non-zero flow valves
 #
-# Apparently you can use the Floyd–Warshall algorithm instead
+# Using the Floyd–Warshall algorithm (although it doesn't seem
+# to be more efficient than a basic shortest path algorithm).
 #
 
-distances = {}
+distances = Hash.new { |h, k| h[k] = Hash.new(9999) }
 
-nodes = flows.select { |valve, flow| flow > 0 }.keys
-nodes << start
-
-nodes.combination(2).each do |from, to|
-  visited = { from: 0 }
-
-  queue = [[from, 0]]
-
-  while queue.any?
-    curr, dist = queue.shift
-
-    valves[curr].each do |dest|
-      next if visited[dest]
-
-      queue << [dest, dist + 1]
-      visited[dest] = dist + 1
-    end
-
-    break if visited[to]
+valves.each do |valve, leads|
+  leads.each do |lead|
+    distances[valve][lead] = 1
+    distances[lead][valve] = 1
   end
+end
 
-  distances[[from, to].sort] = visited[to]
+valves.each do |inter, _|
+  valves.each do |from, _|
+    valves.each do |to, _|
+      dist = distances[from][inter] + distances[inter][to]
+
+      if dist < distances[from][to]
+        distances[from][to] = dist
+      end
+    end
+  end
 end
 
 
@@ -59,7 +53,7 @@ end
 
 queue = [
   [
-    position = start, # current position
+    position = "AA",  # current position
     opened = [],      # valves opened
     pressure = 0,     # total pressure if no more valves are opened
     time = 26         # time remaining
@@ -74,7 +68,7 @@ while queue.any?
   curr, opened, pressure, time = queue.shift
 
   (valves_to_open - opened).each do |dest|
-    dist = distances[[curr, dest].sort]
+    dist = distances[curr][dest]
 
     n_time = time - dist - 1
     next if n_time < 0

@@ -21,7 +21,7 @@ start = "AA"
 #
 # Do this by finding the distances between each non-zero flow valves
 #
-# Apparently you can use the Floyd–Warshall algorithm instead
+# You can also use the Floyd–Warshall algorithm (see part 2)
 #
 
 distances = {}
