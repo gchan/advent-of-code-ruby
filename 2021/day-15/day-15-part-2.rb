@@ -42,7 +42,7 @@ end
 
 grid = new_grid
 
-queue = [[0, 0]]
+queue = [[0, 0, 0]]
 visited = queue.to_set
 
 risks = {
@@ -50,25 +50,21 @@ risks = {
 }
 
 while queue.any?
-  x, y = queue.shift
+  queue.sort_by!(&:last)
+  x, y, current_risk = queue.shift
 
-  current_risk = risks[[x, y]]
+  find_neighbours(grid, x, y)
+    .reject { |x1, y1| visited.include?([x1, y1]) }
+    .each { |x1, y1|
+      coord = [x1, y1]
 
-  find_neighbours(grid, x, y).each do |x1, y1|
-    coord = [x1, y1]
-    risk = grid[y1][x1]
+      new_risk = current_risk + grid[y1][x1]
 
-    new_risk = current_risk + risk
+      risks[coord] = new_risk
 
-    next if risks[coord] && risks[coord] < new_risk
-
-    risks[coord] = new_risk
-
-    next if visited.include?(coord)
-
-    queue << coord
-    visited.add(coord)
-  end
+      queue << [x1, y1, new_risk]
+      visited.add(coord)
+    }
 end
 
 width = grid[0].length
