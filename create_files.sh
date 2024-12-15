@@ -2,7 +2,7 @@
 
 DIR=$(dirname $(readlink -f $0))
 
-for y in `seq -w 2015 2022`; do
+for y in `seq -w 2015 2024`; do
   mkdir $DIR/$y
 
   for i in `seq -w 1 25`; do
